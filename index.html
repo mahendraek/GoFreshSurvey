@@ -45,7 +45,7 @@ body{font-family:Arial,sans-serif;background:#f4f8f5;color:#173326;margin:0}.wra
 </form><div id="ok" class="success"><h2>✓ Thank you!</h2><p>Your FreshBox survey response has been received.</p></div></div>
 </div></div>
 <script>
-const API_URL="PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";let s=1,total=6;
+const API_URL="https://script.google.com/macros/s/AKfycbxgs77jfYZ5R0wg3IBjpSLOfY3ZhgWVKrVEc8BDQn_ew0YIKUHqJ1n8bHQmj0eyRHA/exec";let s=1,total=6;
 const $=x=>document.getElementById(x),form=$("f"),err=$("err");
 function show(){document.querySelectorAll(".step").forEach(x=>x.classList.toggle("active",+x.dataset.s===s));$("bar").style.width=(s/total*100)+"%";$("back").style.visibility=s===1?"hidden":"visible";$("next").style.display=s===total?"none":"block";$("submit").style.display=s===total?"block":"none";err.textContent=""}
 function valid(){let q=document.querySelector('.step[data-s="'+s+'"]');if(s===2)return q.querySelectorAll("input:checked").length>0;if(s<6)return !!q.querySelector("input:checked");return [...q.querySelectorAll("[required]")].every(x=>x.value.trim())&&q.querySelector('[type="email"]').checkValidity()}

@@ -1,0 +1,5 @@
+const SHEET_NAME="Responses";
+function setup(){const ss=SpreadsheetApp.getActiveSpreadsheet();let sh=ss.getSheetByName(SHEET_NAME);if(!sh)sh=ss.insertSheet(SHEET_NAME);if(sh.getLastRow()===0){sh.appendRow(["Timestamp","Interest","Products","Box","Frequency","Pilot","Name","Phone","Email","Area","Comments"]);sh.setFrozenRows(1)}}
+function doGet(){return ContentService.createTextOutput(JSON.stringify({ok:true,service:"FreshBox Survey"})).setMimeType(ContentService.MimeType.JSON)}
+function doPost(e){try{setup();const d=JSON.parse(e.postData.contents||"{}"),sh=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);sh.appendRow([new Date(),clean(d.interest),clean(d.products),clean(d.box),clean(d.frequency),clean(d.pilot),clean(d.name),clean(d.phone),clean(d.email),clean(d.area),clean(d.comments)]);return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON)}catch(err){return ContentService.createTextOutput(JSON.stringify({ok:false,error:String(err)})).setMimeType(ContentService.MimeType.JSON)}}
+function clean(v){return String(v==null?"":v).trim().slice(0,1000)}

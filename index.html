@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FreshBox Survey</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f8f5;color:#173326;margin:0}.wrap{max-width:700px;margin:auto;padding:18px}.card{background:#fff;padding:22px;border-radius:18px;box-shadow:0 5px 20px #0001}.logo{font-size:30px;font-weight:800;color:#1f7a4d;text-align:center}h1{font-size:23px;text-align:center}h2{font-size:19px}.sub,.hint{color:#66736b;line-height:1.5}.progress{height:7px;background:#e5eee8;border-radius:8px;margin:18px 0}.progress div{height:100%;background:#1f7a4d;border-radius:8px;width:16%}.step{display:none}.step.active{display:block}.opt{display:block;border:1px solid #dce6df;border-radius:12px;padding:13px;margin:9px 0}.opt input{margin-right:8px;accent-color:#1f7a4d}.small{color:#66736b;font-size:13px;margin:3px 0 0 24px}.field{display:block;font-weight:bold;margin:14px 0 6px}.input,textarea{width:100%;padding:12px;border:1px solid #dce6df;border-radius:10px;font:inherit;box-sizing:border-box}textarea{min-height:90px}.nav{display:flex;gap:10px;margin-top:20px}.btn{flex:1;padding:13px;border:0;border-radius:11px;font-weight:bold;font-size:16px}.back{background:#edf2ee}.next,.submit{background:#1f7a4d;color:white}.error{color:#b42318;margin-top:10px}.success{display:none;text-align:center}.privacy{font-size:12px;color:#66736b;line-height:1.5}@media(max-width:480px){.card{padding:17px}}
+</style></head>
+<body><div class="wrap"><div class="logo">🥕 FreshBox</div>
+<h1>Help us shape FreshBox</h1><p class="sub" style="text-align:center">A 1-minute survey about fresh vegetables and washed & cut vegetables delivered to your doorstep.</p>
+<div class="card"><div id="welcome" style="text-align:center"><div style="font-size:52px">🥕</div><h2>Welcome to FreshBox</h2><p class="sub">FreshBox makes everyday vegetable shopping easier with fresh vegetables delivered to your doorstep every week, plus fresh-cut vegetables whenever you need them.</p><div style="text-align:left;background:#f3f8f4;padding:16px;border-radius:14px;margin:18px 0"><h3>🥬 Fresh vegetables every week</h3><p>Choose a weekly box of fresh vegetables for your regular household needs, delivered conveniently to your doorstep.</p><h3>🔪 Fresh-cut when you need</h3><p>Order washed and freshly cut vegetables separately, as needed and when needed — without a fixed subscription.</p><p><strong>The FreshBox model:</strong> a weekly fresh-vegetable subscription combined with an on-demand fresh-cut vegetable service.</p></div><button type="button" id="startSurvey" class="btn next" style="width:100%">Start the 1-minute survey</button></div><div id="surveyArea" style="display:none"><div class="progress"><div id="bar"></div></div>
+<form id="f">
+<section class="step active" data-s="1"><h2>How interested are you in FreshBox?</h2>
+<label class="opt"><input type="radio" name="interest" value="Definitely interested">Definitely interested</label>
+<label class="opt"><input type="radio" name="interest" value="Probably interested">Probably interested</label>
+<label class="opt"><input type="radio" name="interest" value="Maybe / need more information">Maybe / need more information</label>
+<label class="opt"><input type="radio" name="interest" value="Not interested">Not interested</label></section>
+<section class="step" data-s="2"><h2>What would you like to receive?</h2><p class="hint">Select all that interest you.</p>
+<label class="opt"><input type="checkbox" name="products" value="Fresh whole vegetables">Fresh whole vegetables</label>
+<label class="opt"><input type="checkbox" name="products" value="Washed & cut vegetables">Washed & cut vegetables</label>
+<label class="opt"><input type="checkbox" name="products" value="Leafy greens">Leafy greens</label>
+<label class="opt"><input type="checkbox" name="products" value="Fresh herbs">Fresh herbs</label>
+<label class="opt"><input type="checkbox" name="products" value="Ready-to-cook mixes">Ready-to-cook mixes</label>
+<label class="opt"><input type="checkbox" name="products" value="Salad ingredients">Salad ingredients</label></section>
+<section class="step" data-s="3"><h2>Which weekly box would interest you?</h2><p class="hint">Indicative pilot pricing.</p>
+<label class="opt"><input type="radio" name="box" value="Small — ₹249/week"><b>Small — ₹249/week</b><div class="small">Suitable for 1–2 people</div></label>
+<label class="opt"><input type="radio" name="box" value="Medium — ₹399/week"><b>Medium — ₹399/week</b><div class="small">Suitable for 2–4 people</div></label>
+<label class="opt"><input type="radio" name="box" value="Large — ₹499/week"><b>Large — ₹499/week</b><div class="small">Suitable for 4+ people</div></label></section>
+<section class="step" data-s="4"><h2>How often would you prefer delivery?</h2>
+<label class="opt"><input type="radio" name="frequency" value="Every week">Every week</label>
+<label class="opt"><input type="radio" name="frequency" value="Every 2 weeks">Every 2 weeks</label>
+<label class="opt"><input type="radio" name="frequency" value="Twice a week">Twice a week</label>
+<label class="opt"><input type="radio" name="frequency" value="Flexible / pause anytime">Flexible / pause anytime</label></section>
+<section class="step" data-s="5"><h2>Would you be interested in joining our FreshBox pilot?</h2><p class="hint">Your response helps us plan the pilot.</p>
+<label class="opt"><input type="radio" name="pilot" value="Yes, I’d like to participate">Yes, I’d like to participate</label>
+<label class="opt"><input type="radio" name="pilot" value="Yes, but I’d like more information first">Yes, but I’d like more information first</label>
+<label class="opt"><input type="radio" name="pilot" value="Maybe, depending on the price and delivery area">Maybe, depending on the price and delivery area</label>
+<label class="opt"><input type="radio" name="pilot" value="No, not at this time">No, not at this time</label></section>
+<section class="step" data-s="6"><h2>How can we contact you?</h2><p class="hint">Mobile number and area are especially helpful for pilot planning.</p>
+<label class="field">Name<input class="input" name="name" required></label>
+<label class="field">Mobile number<input class="input" name="phone" inputmode="tel" required></label>
+<label class="field">Email address<input class="input" type="email" name="email" required></label>
+<label class="field">City / Area<input class="input" name="area" placeholder="e.g., Whitefield, Bengaluru" required></label>
+<label class="field">Comments / suggestions<textarea name="comments"></textarea></label>
+<p class="privacy">Your details will be used to evaluate the FreshBox pilot and contact you about the pilot if appropriate.</p></section>
+<div id="err" class="error"></div><div class="nav"><button type="button" id="back" class="btn back">Back</button><button type="button" id="next" class="btn next">Next</button><button type="submit" id="submit" class="btn submit" style="display:none">Submit survey</button></div>
+</form><div id="ok" class="success"><h2>✓ Thank you!</h2><p>Your FreshBox survey response has been received.</p></div></div>
+</div></div>
+<script>
+const API_URL="PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";let s=1,total=6;
+const $=x=>document.getElementById(x),form=$("f"),err=$("err");
+function show(){document.querySelectorAll(".step").forEach(x=>x.classList.toggle("active",+x.dataset.s===s));$("bar").style.width=(s/total*100)+"%";$("back").style.visibility=s===1?"hidden":"visible";$("next").style.display=s===total?"none":"block";$("submit").style.display=s===total?"block":"none";err.textContent=""}
+function valid(){let q=document.querySelector('.step[data-s="'+s+'"]');if(s===2)return q.querySelectorAll("input:checked").length>0;if(s<6)return !!q.querySelector("input:checked");return [...q.querySelectorAll("[required]")].every(x=>x.value.trim())&&q.querySelector('[type="email"]').checkValidity()}
+$("next").onclick=()=>{if(!valid()){err.textContent="Please complete the required response.";return}s++;show()};$("back").onclick=()=>{if(s>1){s--;show()}};
+form.onsubmit=async e=>{
+e.preventDefault();
+if(!valid()){err.textContent="Please complete the required fields.";return}
+if(API_URL.includes("PASTE_")){err.textContent="Connect the Google Apps Script URL in index.html before using the live survey.";return}
+let fd=new FormData(form),d={};
+["interest","box","frequency","pilot","name","phone","email","area","comments"].forEach(k=>d[k]=fd.get(k)||"");
+d.products=[...form.querySelectorAll('[name="products"]:checked')].map(x=>x.value).join(", ");
+$("submit").disabled=true;
+$("submit").textContent="Submitting…";
+err.textContent="";
+try{
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),15000);
+  await fetch(API_URL,{
+    method:"POST",
+    mode:"no-cors",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(d),
+    signal:controller.signal
+  });
+  clearTimeout(timeout);
+  form.style.display="none";
+  document.querySelector(".progress").style.display="none";
+  $("ok").innerHTML='<h2>✓ Submission complete!</h2><p>Thank you for your interest in FreshBox.</p><p>We have received your response and will get an update back to you soon.</p>';
+  $("ok").style.display="block";
+}catch(e){
+  $("submit").disabled=false;
+  $("submit").textContent="Submit survey";
+  err.textContent=e.name==="AbortError"
+    ?"The submission is taking longer than expected. Please check your internet connection and try again."
+    :"We couldn't submit the survey. Please try again.";
+}
+};
+document.getElementById("startSurvey").onclick=()=>{document.getElementById("welcome").style.display="none";document.getElementById("surveyArea").style.display="block";show();};
+show();
+</script></body></html>

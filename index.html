@@ -20,21 +20,26 @@ body{font-family:Arial,sans-serif;background:#f4f8f5;color:#173326;margin:0}.wra
 <label class="opt"><input type="checkbox" name="products" value="Fresh herbs">Fresh herbs</label>
 <label class="opt"><input type="checkbox" name="products" value="Ready-to-cook mixes">Ready-to-cook mixes</label>
 <label class="opt"><input type="checkbox" name="products" value="Salad ingredients">Salad ingredients</label></section>
-<section class="step" data-s="3"><h2>Which weekly box would interest you?</h2><p class="hint">Indicative pilot pricing.</p>
+<section class="step" data-s="3"><h2>Would you also be interested in milk delivery?</h2><p class="hint">Choose the option you would prefer.</p>
+<label class="opt"><input type="radio" name="milk" value="Regular milk">Regular Milk</label>
+<label class="opt"><input type="radio" name="milk" value="Organic milk">Organic Milk</label>
+<label class="opt"><input type="radio" name="milk" value="Both regular and organic milk">Both Regular &amp; Organic Milk</label>
+<label class="opt"><input type="radio" name="milk" value="Not interested in milk">Not interested in milk</label></section>
+<section class="step" data-s="4"><h2>Which weekly box would interest you?</h2><p class="hint">Indicative pilot pricing.</p>
 <label class="opt"><input type="radio" name="box" value="Small — ₹249/week"><b>Small — ₹249/week</b><div class="small">Suitable for 1–2 people</div></label>
 <label class="opt"><input type="radio" name="box" value="Medium — ₹399/week"><b>Medium — ₹399/week</b><div class="small">Suitable for 2–4 people</div></label>
 <label class="opt"><input type="radio" name="box" value="Large — ₹499/week"><b>Large — ₹499/week</b><div class="small">Suitable for 4+ people</div></label></section>
-<section class="step" data-s="4"><h2>How often would you prefer delivery?</h2>
+<section class="step" data-s="5"><h2>How often would you prefer delivery?</h2>
 <label class="opt"><input type="radio" name="frequency" value="Every week">Every week</label>
 <label class="opt"><input type="radio" name="frequency" value="Every 2 weeks">Every 2 weeks</label>
 <label class="opt"><input type="radio" name="frequency" value="Twice a week">Twice a week</label>
 <label class="opt"><input type="radio" name="frequency" value="Flexible / pause anytime">Flexible / pause anytime</label></section>
-<section class="step" data-s="5"><h2>Would you be interested in joining our FreshBox pilot?</h2><p class="hint">Your response helps us plan the pilot.</p>
+<section class="step" data-s="6"><h2>Would you be interested in joining our FreshBox pilot?</h2><p class="hint">Your response helps us plan the pilot.</p>
 <label class="opt"><input type="radio" name="pilot" value="Yes, I’d like to participate">Yes, I’d like to participate</label>
 <label class="opt"><input type="radio" name="pilot" value="Yes, but I’d like more information first">Yes, but I’d like more information first</label>
 <label class="opt"><input type="radio" name="pilot" value="Maybe, depending on the price and delivery area">Maybe, depending on the price and delivery area</label>
 <label class="opt"><input type="radio" name="pilot" value="No, not at this time">No, not at this time</label></section>
-<section class="step" data-s="6"><h2>How can we contact you?</h2><p class="hint">Mobile number and area are especially helpful for pilot planning.</p>
+<section class="step" data-s="7"><h2>How can we contact you?</h2><p class="hint">Mobile number and area are especially helpful for pilot planning.</p>
 <label class="field">Name<input class="input" name="name" required></label>
 <label class="field">Mobile number<input class="input" name="phone" inputmode="tel" required></label>
 <label class="field">Email address<input class="input" type="email" name="email" required></label>
@@ -45,17 +50,17 @@ body{font-family:Arial,sans-serif;background:#f4f8f5;color:#173326;margin:0}.wra
 </form><div id="ok" class="success"><h2>✓ Thank you!</h2><p>Your FreshBox survey response has been received.</p></div></div>
 </div></div>
 <script>
-const API_URL="https://script.google.com/macros/s/AKfycbxgs77jfYZ5R0wg3IBjpSLOfY3ZhgWVKrVEc8BDQn_ew0YIKUHqJ1n8bHQmj0eyRHA/exec";let s=1,total=6;
+const API_URL="https://script.google.com/macros/s/AKfycbxgs77jfYZ5R0wg3IBjpSLOfY3ZhgWVKrVEc8BDQn_ew0YIKUHqJ1n8bHQmj0eyRHA/exec";let s=1,total=7;
 const $=x=>document.getElementById(x),form=$("f"),err=$("err");
 function show(){document.querySelectorAll(".step").forEach(x=>x.classList.toggle("active",+x.dataset.s===s));$("bar").style.width=(s/total*100)+"%";$("back").style.visibility=s===1?"hidden":"visible";$("next").style.display=s===total?"none":"block";$("submit").style.display=s===total?"block":"none";err.textContent=""}
-function valid(){let q=document.querySelector('.step[data-s="'+s+'"]');if(s===2)return q.querySelectorAll("input:checked").length>0;if(s<6)return !!q.querySelector("input:checked");return [...q.querySelectorAll("[required]")].every(x=>x.value.trim())&&q.querySelector('[type="email"]').checkValidity()}
+function valid(){let q=document.querySelector('.step[data-s="'+s+'"]');if(s===2)return q.querySelectorAll("input:checked").length>0;if(s<7)return !!q.querySelector("input:checked");return [...q.querySelectorAll("[required]")].every(x=>x.value.trim())&&q.querySelector('[type="email"]').checkValidity()}
 $("next").onclick=()=>{if(!valid()){err.textContent="Please complete the required response.";return}s++;show()};$("back").onclick=()=>{if(s>1){s--;show()}};
 form.onsubmit=async e=>{
 e.preventDefault();
 if(!valid()){err.textContent="Please complete the required fields.";return}
 if(API_URL.includes("PASTE_")){err.textContent="Connect the Google Apps Script URL in index.html before using the live survey.";return}
 let fd=new FormData(form),d={};
-["interest","box","frequency","pilot","name","phone","email","area","comments"].forEach(k=>d[k]=fd.get(k)||"");
+["interest","milk","box","frequency","pilot","name","phone","email","area","comments"].forEach(k=>d[k]=fd.get(k)||"");
 d.products=[...form.querySelectorAll('[name="products"]:checked')].map(x=>x.value).join(", ");
 $("submit").disabled=true;
 $("submit").textContent="Submitting…";
@@ -66,8 +71,7 @@ try{
   await fetch(API_URL,{
     method:"POST",
     mode:"no-cors",
-    headers:{"Content-Type":"text/plain;charset=utf-8"},
-    body:JSON.stringify(d),
+    body:new URLSearchParams(d),
     signal:controller.signal
   });
   clearTimeout(timeout);
